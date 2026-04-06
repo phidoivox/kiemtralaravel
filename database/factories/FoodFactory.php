@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Food;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<Food>
+ */
+class FoodFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->words(2, true),
+            'price' => fake()->numberBetween(10000, 50000),
+            'old_price' => fake()->optional()->numberBetween(50000, 100000),
+            'description' => fake()->text(),
+            'image' => 'https://placehold.co/400x400/e2e8f0/64748b?text=Food+' . fake()->numberBetween(1, 100),
+            'category' => fake()->randomElement(['Hoa quả', 'Thực phẩm hữu cơ', 'Thực phẩm khô', 'Sản phẩm nổi bật']),
+        ];
+    }
+}
