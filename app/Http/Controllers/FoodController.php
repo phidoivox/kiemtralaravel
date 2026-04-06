@@ -12,8 +12,9 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
-        return view('foods.index', compact('foods'));
+        $categories = \App\Models\Category::all();
+        $foods = Food::with('category')->get();
+        return view('foods.index', compact('foods', 'categories'));
     }
 
     /**
@@ -21,7 +22,8 @@ class FoodController extends Controller
      */
     public function create()
     {
-        return view('foods.create');
+        $categories = \App\Models\Category::all();
+        return view('foods.create', compact('categories'));
     }
 
     /**
@@ -42,7 +44,7 @@ class FoodController extends Controller
      */
     public function show(Food $food)
     {
-        $relatedFoods = Food::where('category', $food->category)
+        $relatedFoods = Food::where('category_id', $food->category_id)
             ->where('id', '!=', $food->id)
             ->take(4)
             ->get();

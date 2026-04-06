@@ -176,7 +176,7 @@
         <div class="mb-6 text-sm text-gray-500">
             <a href="{{ route('foods.index') }}" class="hover:text-green-600">Trang chủ</a>
             <span class="mx-2">›</span>
-            <a href="{{ route('foods.index', ['category' => $food->category]) }}" class="hover:text-green-600">{{ $food->category }}</a>
+            <a href="{{ route('foods.index', ['category_id' => $food->category_id]) }}" class="hover:text-green-600">{{ $food->category->name ?? 'Không xác định' }}</a>
             <span class="mx-2">›</span>
             <span class="text-gray-900 font-bold">{{ $food->name }}</span>
         </div>
@@ -201,7 +201,7 @@
                 </div>
 
                 <div class="product-desc border-t border-b border-gray-100 py-4 mt-6">
-                    <p><strong>Danh mục:</strong> {{ $food->category }}</p>
+                    <p><strong>Danh mục:</strong> {{ $food->category->name ?? 'Không xác định' }}</p>
                     <p class="mt-4">{{ $food->description ?? 'Đang cập nhật mô tả cho sản phẩm này.' }}</p>
                 </div>
 

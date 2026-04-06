@@ -12,5 +12,10 @@ class Food extends Model
 
     protected $table = 't_food';
 
-    protected $fillable = ['name', 'price', 'old_price', 'description', 'image', 'category'];
+    protected $fillable = ['name', 'price', 'old_price', 'description', 'image', 'category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

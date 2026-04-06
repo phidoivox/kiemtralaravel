@@ -136,20 +136,19 @@
         <!-- Category Tabs -->
         <div class="flex justify-center gap-8 mb-8 border-b pb-2">
             @php
-                $activeCategory = request('category', 'Hoa quả');
+                $activeCategory = request('category_id', $categories->first()->id ?? null);
             @endphp
-            <a href="?category=Hoa quả" class="tab-item {{ $activeCategory == 'Hoa quả' ? 'active' : '' }}">Hoa quả</a>
-            <a href="?category=Thực phẩm hữu cơ" class="tab-item {{ $activeCategory == 'Thực phẩm hữu cơ' ? 'active' : '' }}">Thực phẩm hữu cơ</a>
-            <a href="?category=Thực phẩm khô" class="tab-item {{ $activeCategory == 'Thực phẩm khô' ? 'active' : '' }}">Thực phẩm khô</a>
-            <a href="?category=Sản phẩm nổi bật" class="tab-item {{ $activeCategory == 'Sản phẩm nổi bật' ? 'active' : '' }}">Sản phẩm nổi bật</a>
+            @foreach($categories as $category)
+                <a href="?category_id={{ $category->id }}" class="tab-item {{ $activeCategory == $category->id ? 'active' : '' }}">{{ $category->name }}</a>
+            @endforeach
         </div>
 
         <!-- Product Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             @php
-                // Filter foods by active category (case-insensitive for robustness)
+                // Filter foods by active category
                 $filteredFoods = $foods->filter(function($food) use ($activeCategory) {
-                    return strtolower($food->category) == strtolower($activeCategory);
+                    return $food->category_id == $activeCategory;
                 });
             @endphp
 

@@ -23,7 +23,7 @@ class FoodFactory extends Factory
             'old_price' => fake()->optional()->numberBetween(50000, 100000),
             'description' => fake()->text(),
             'image' => 'https://placehold.co/400x400/e2e8f0/64748b?text=Food+' . fake()->numberBetween(1, 100),
-            'category' => fake()->randomElement(['Hoa quả', 'Thực phẩm hữu cơ', 'Thực phẩm khô', 'Sản phẩm nổi bật']),
+            'category_id' => \App\Models\Category::inRandomOrder()->first()->id,
         ];
     }
 }

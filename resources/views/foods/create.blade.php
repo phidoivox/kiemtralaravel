@@ -32,14 +32,13 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">Danh mục (*)</label>
-                <select name="category" class="shadow border @error('category') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <select name="category_id" class="shadow border @error('category_id') border-red-500 @enderror rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                     <option value="">-- Chọn danh mục --</option>
-                    <option value="Hoa quả" {{ old('category') == 'Hoa quả' ? 'selected' : '' }}>Hoa quả</option>
-                    <option value="Thực phẩm khô" {{ old('category') == 'Thực phẩm khô' ? 'selected' : '' }}>Thực phẩm khô</option>
-                    <option value="Thực phẩm hữu cơ" {{ old('category') == 'Thực phẩm hữu cơ' ? 'selected' : '' }}>Thực phẩm hữu cơ</option>
-                    <option value="Sản phẩm nổi bật" {{ old('category') == 'Sản phẩm nổi bật' ? 'selected' : '' }}>Sản phẩm nổi bật</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                    @endforeach
                 </select>
-                @error('category') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
+                @error('category_id') <p class="text-red-500 text-xs italic mt-1">{{ $message }}</p> @enderror
             </div>
 
             <div class="mb-4 flex gap-4">

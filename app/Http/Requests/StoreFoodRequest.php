@@ -28,7 +28,7 @@ class StoreFoodRequest extends FormRequest
             'old_price' => 'nullable|numeric|min:0',
             'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 
@@ -38,7 +38,8 @@ class StoreFoodRequest extends FormRequest
             'name.required' => 'Vui lòng nhập tên sản phẩm.',
             'price.required' => 'Vui lòng nhập giá sản phẩm.',
             'price.numeric' => 'Giá sản phẩm phải là một số.',
-            'category.required' => 'Vui lòng chọn hoặc nhập danh mục.',
+            'category_id.required' => 'Vui lòng chọn danh mục.',
+            'category_id.exists' => 'Danh mục không hợp lệ.',
             'image.image' => 'File tải lên phải là hình ảnh.',
         ];
     }
