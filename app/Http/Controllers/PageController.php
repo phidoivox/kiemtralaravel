@@ -22,8 +22,9 @@ class PageController extends Controller
         $new_product = Product::where('new', 1)->paginate(4, ['*'], 'new_page');
         // promotion_price != 0 means top products/sale
         $sanpham_khuyenmai = Product::where('promotion_price', '<>', 0)->paginate(8, ['*'], 'promo_page');
+        $all_product = Product::paginate(8, ['*'], 'all_page');
         
-        return view('banhang.index', compact('slide', 'new_product', 'sanpham_khuyenmai'));
+        return view('banhang.index', compact('slide', 'new_product', 'sanpham_khuyenmai', 'all_product'));
     }
 
     public function getDetail(Request $req){

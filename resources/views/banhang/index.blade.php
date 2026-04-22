@@ -104,6 +104,47 @@
                         </div>
                         <div class="row">{{$sanpham_khuyenmai->links("pagination::bootstrap-4")}}</div>
                     </div> <!-- .beta-products-list -->
+
+                    <div class="space50">&nbsp;</div>
+
+                    <div class="beta-products-list">
+                        <h4>Tất cả sản phẩm</h4>
+                        <div class="beta-products-details">
+                            <p class="pull-left">Tìm thấy {{$all_product->total()}} sản phẩm</p>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="row">
+                            @foreach($all_product as $all)
+                            <div class="col-sm-3" style="margin-bottom:20px;">
+                                <div class="single-item">
+                                    @if($all->promotion_price != 0)
+                                        <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                    @endif
+                                    <div class="single-item-header">
+                                        <a href="{{route('chitietsanpham', $all->id)}}"><img src="image/product/{{$all->image}}" alt="" height="250px"></a>
+                                    </div>
+                                    <div class="single-item-body">
+                                        <p class="single-item-title">{{$all->name}}</p>
+                                        <p class="single-item-price" style="font-size: 18px">
+                                            @if($all->promotion_price == 0)
+                                                <span class="flash-sale">{{number_format($all->unit_price)}} đồng</span>
+                                            @else
+                                                <span class="flash-del">{{number_format($all->unit_price)}} đồng</span>
+                                                <span class="flash-sale">{{number_format($all->promotion_price)}} đồng</span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="single-item-caption" style="margin-top:10px;">
+                                        <a class="add-to-cart pull-left" href="{{route('addToCart', $all->id)}}" title="Thêm vào giỏ hàng"><i class="fa fa-shopping-cart"></i></a>
+                                        <a class="beta-btn primary" href="{{route('chitietsanpham', $all->id)}}">Chi tiết <i class="fa fa-chevron-right"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <div class="row">{{$all_product->links("pagination::bootstrap-4")}}</div>
+                    </div> <!-- .beta-products-list -->
                 </div>
             </div> <!-- end section with sidebar and main content -->
 
