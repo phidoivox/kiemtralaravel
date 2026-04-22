@@ -19,6 +19,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (\Illuminate\Support\Facades\Schema::hasTable('type_products')) {
+            view()->share('loai_sp', \App\Models\TypeProduct::all());
+        }
     }
 }
